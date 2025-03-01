@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
     autoconf \
     libtool \
     git-lfs \
+    rsync \
     zlib1g-dev
 
 #RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -

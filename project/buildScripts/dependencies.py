@@ -321,8 +321,11 @@ def get_flatc_dir():
   platform_map = {
     'Darwin': 'x86_64-apple-darwin',
     'Linux': 'x86_64-linux-gnu',
+    'Linux-arm64': 'aarch64-linux-gnu'
   }
   platform_name = platform.system()
+  if platform.system().lower() == 'linux' and platform.machine() in ['aarch64', 'arm64']:
+    platform_name = 'Linux-arm64'
   target_triple = platform_map.get(platform_name)
 
   if target_triple:
