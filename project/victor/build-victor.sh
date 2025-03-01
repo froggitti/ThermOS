@@ -161,8 +161,8 @@ done
 
 if [ -z "${CMAKE_EXE+x}" ]; then
     echo "Attempting to install cmake"
-    ${TOPLEVEL}/tools/build/tools/ankibuild/cmake.py --install-cmake 3.9.6
-    CMAKE_EXE=`${TOPLEVEL}/tools/build/tools/ankibuild/cmake.py --find-cmake 3.9.6`
+    ${TOPLEVEL}/tools/build/tools/ankibuild/cmake.py --install-cmake 3.19.3
+    CMAKE_EXE=`${TOPLEVEL}/tools/build/tools/ankibuild/cmake.py --find-cmake 3.19.3`
 fi
 
 if [ $IGNORE_EXTERNAL_DEPENDENCIES -eq 0 ]; then
@@ -343,6 +343,10 @@ fi
 
 # Set protobuf location
 HOST=`uname -a | awk '{print tolower($1);}' | sed -e 's/darwin/mac/'`
+if [[ `uname -a` == *"aarch64"* && $HOST == "linux" ]]; then
+	HOST+="-arm64"
+fi
+echo $HOST
 PROTOBUF_HOME=${TOPLEVEL}/3rd/protobuf/${HOST}
 
 # Build protocCppPlugin if needed

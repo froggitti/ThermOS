@@ -36,7 +36,7 @@ git lfs update --force
 
 echo "Building victor..."
 
-./project/victor/scripts/victor_build_release.sh
+./project/victor/scripts/victor_build_release.sh -x /usr/bin/cmake
 
 echo "Copying vic-cloud and vic-gateway..."
 cp -a bin/* _build/vicos/Release/bin/
