@@ -22,9 +22,17 @@ if [[ ! -d .anki ]]; then
     mv anki-deps .anki
 fi
 
+cd ~/.anki
+git pull
+
+if [[ -d ~/.anki/cmake/3.9.6 ]]; then
+    echo "Removing old version of cmake"
+    rm -rf ~/.anki/cmake
+fi
+
 if [[ ${UNAME} == "Darwin" ]]; then
     echo "Checking out macOS branch..."
-    cd .anki
+    cd ~/.anki
     if [[ $(uname -a) == *"arm64"* ]]; then
         git checkout macos-arm
     else

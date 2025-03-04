@@ -320,12 +320,13 @@ def get_flatc_dir():
   """Determine flatc executable location for platform"""
   platform_map = {
     'Darwin': 'x86_64-apple-darwin',
+    'Darwin-arm64': 'aarch64-apple-darwin',
     'Linux': 'x86_64-linux-gnu',
     'Linux-arm64': 'aarch64-linux-gnu'
   }
   platform_name = platform.system()
-  if platform.system().lower() == 'linux' and platform.machine() in ['aarch64', 'arm64']:
-    platform_name = 'Linux-arm64'
+  if platform.machine() in ['aarch64', 'arm64']:
+    platform_name = '{}-arm64'.format(platform_name)
   target_triple = platform_map.get(platform_name)
 
   if target_triple:
@@ -569,23 +570,23 @@ def svn_package(svn_dict):
         #        shutil.move(src_loc, dst_loc)
         #shutil.rmtree(os.path.join(loc, branch))
 
-        # Extract tar files if necessary
-        # if extract_types:
-        #     print("Extracting tar files from SVN assets...")
-        #     for sub_dir in sub_dirs:
-        #         #print(sub_dir)
-        #         put_in_sub_dir = os.path.basename(sub_dir) in UNPACK_INTO_SUBDIR
-        #         try:
-        #             anim_name_length_mapping = extract_files_from_tar(os.path.join(loc, sub_dir), extract_types, put_in_sub_dir)
-        #         except EnvironmentError as e:
-        #             anim_name_length_mapping = {}
-        #             print("Failed to unpack one or more tar files in [%s] because: %s" % (sub_dir, e))
-        #             print(stale_warning)
-        #         file_stats = get_file_stats(sub_dir)
-        #         if anim_name_length_mapping:
-        #             write_animation_manifest(loc, anim_name_length_mapping, additional_files)
-        #         print("After unpacking tar files, '%s' contains the following files: %s"
-        #               % (os.path.basename(sub_dir), file_stats))
+        #Extract tar files if necessary
+        if extract_types:
+            print("Extracting tar files from SVN assets...")
+            for sub_dir in sub_dirs:
+                #print(sub_dir)
+                put_in_sub_dir = os.path.basename(sub_dir) in UNPACK_INTO_SUBDIR
+                try:
+                    anim_name_length_mapping = extract_files_from_tar(os.path.join(loc, sub_dir), extract_types, put_in_sub_dir)
+                except EnvironmentError as e:
+                    anim_name_length_mapping = {}
+                    print("Failed to unpack one or more tar files in [%s] because: %s" % (sub_dir, e))
+                    print(stale_warning)
+                file_stats = get_file_stats(sub_dir)
+                if anim_name_length_mapping:
+                    write_animation_manifest(loc, anim_name_length_mapping, additional_files)
+                print("After unpacking tar files, '%s' contains the following files: %s"
+                      % (os.path.basename(sub_dir), file_stats))
 
     return checked_out_repos
 

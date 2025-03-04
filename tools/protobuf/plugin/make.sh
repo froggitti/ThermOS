@@ -13,7 +13,7 @@ fi
 
 HOST=`uname -a | awk '{print tolower($1);}' | sed -e 's/darwin/mac/'`
 
-if [[ `uname -a` == *"aarch64"* && $HOST == "linux" ]]; then
+if [[ `uname -a` == *"aarch64"* || `uname -a` == *"arm64"* ]]; then
 	HOST+="-arm64"
 fi
 
