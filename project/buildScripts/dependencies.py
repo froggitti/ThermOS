@@ -570,22 +570,22 @@ def svn_package(svn_dict):
         #shutil.rmtree(os.path.join(loc, branch))
 
         # Extract tar files if necessary
-        if extract_types:
-            print("Extracting tar files from SVN assets...")
-            for sub_dir in sub_dirs:
-                #print(sub_dir)
-                put_in_sub_dir = os.path.basename(sub_dir) in UNPACK_INTO_SUBDIR
-                try:
-                    anim_name_length_mapping = extract_files_from_tar(os.path.join(loc, sub_dir), extract_types, put_in_sub_dir)
-                except EnvironmentError as e:
-                    anim_name_length_mapping = {}
-                    print("Failed to unpack one or more tar files in [%s] because: %s" % (sub_dir, e))
-                    print(stale_warning)
-                file_stats = get_file_stats(sub_dir)
-                if anim_name_length_mapping:
-                    write_animation_manifest(loc, anim_name_length_mapping, additional_files)
-                print("After unpacking tar files, '%s' contains the following files: %s"
-                      % (os.path.basename(sub_dir), file_stats))
+        # if extract_types:
+        #     print("Extracting tar files from SVN assets...")
+        #     for sub_dir in sub_dirs:
+        #         #print(sub_dir)
+        #         put_in_sub_dir = os.path.basename(sub_dir) in UNPACK_INTO_SUBDIR
+        #         try:
+        #             anim_name_length_mapping = extract_files_from_tar(os.path.join(loc, sub_dir), extract_types, put_in_sub_dir)
+        #         except EnvironmentError as e:
+        #             anim_name_length_mapping = {}
+        #             print("Failed to unpack one or more tar files in [%s] because: %s" % (sub_dir, e))
+        #             print(stale_warning)
+        #         file_stats = get_file_stats(sub_dir)
+        #         if anim_name_length_mapping:
+        #             write_animation_manifest(loc, anim_name_length_mapping, additional_files)
+        #         print("After unpacking tar files, '%s' contains the following files: %s"
+        #               % (os.path.basename(sub_dir), file_stats))
 
     return checked_out_repos
 

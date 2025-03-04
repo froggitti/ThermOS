@@ -51,9 +51,6 @@ vlog "vicos-sdk"
 vlog "CMake"
 ./tools/build/tools/ankibuild/cmake.py
 
-vlog "Go"
-./tools/build/tools/ankibuild/go.py
-
 #vlog "git lfs"
 #$GIT lfs install
 #$GIT lfs pull

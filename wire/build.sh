@@ -25,7 +25,11 @@ fi
 if [[ ${UNAME} == "Darwin" ]]; then
     echo "Checking out macOS branch..."
     cd .anki
-    git checkout macos
+    if [[ $(uname -a) == *"arm64"* ]]; then
+        git checkout macos-arm
+    else
+        git checkout macos
+    fi
     git lfs install
     git lfs pull
 fi
@@ -36,7 +40,7 @@ git lfs update --force
 
 echo "Building victor..."
 
-./project/victor/scripts/victor_build_release.sh -x /usr/bin/cmake
+./project/victor/scripts/victor_build_release.sh
 
 echo "Copying vic-cloud and vic-gateway..."
 cp -a bin/* _build/vicos/Release/bin/
