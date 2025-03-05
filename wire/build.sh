@@ -41,6 +41,11 @@ if [[ ${UNAME} == "Darwin" ]]; then
     fi
     git lfs install
     git lfs pull
+else
+    if [[ $(uname -a) == *"aarch64"* ]]; then
+       cd ~/.anki
+       git checkout arm64-linux
+    fi
 fi
 
 cd "${VICDIR}"
