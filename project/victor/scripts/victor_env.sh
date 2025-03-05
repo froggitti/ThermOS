@@ -48,7 +48,6 @@ robot_cp ()
     fi
 
     VERSION=$(ssh -V 2>&1 | awk '{print $1}' | sed 's/OpenSSH_//; s/p.*//')
-
     if [[ $(echo -e "$VERSION\n9.8" | sort -V | tail -1) == "$VERSION" ]]; then
         ARGS+=" -O"
     fi
@@ -75,7 +74,6 @@ robot_cp_from ()
     fi
 
     VERSION=$(ssh -V 2>&1 | awk '{print $1}' | sed 's/OpenSSH_//; s/p.*//')
-
     if [[ $(echo -e "$VERSION\n9.8" | sort -V | tail -1) == "$VERSION" ]]; then
         ARGS+=" -O"
     fi
