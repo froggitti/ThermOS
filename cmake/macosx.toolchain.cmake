@@ -4,14 +4,17 @@ set(MACOSX_COMPILER_FLAGS_DEBUG)
 set(MACOSX_COMPILER_FLAGS_RELEASE)
 set(MACOSX_LINKER_FLAGS)
 set(MACOSX_LINKER_FLAGS_EXE)
+set(MACOSX)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build arch" FORCE)
 
 
 # Generic flags.
 list(APPEND MACOSX_COMPILER_FLAGS
-  -arch x86_64 -Wformat -Werror=format-security
-  -fstack-protector-strong)
+  -arch x86_64 -DMACOSX=1 -DSIMULATOR=1 -Wformat -Werror=format-security
+  -fstack-protector-strong -Wno-deprecated-declarations -Wno-strict-prototypes 
+  -Wno-non-c-typedef-for-linkage -Wno-defaulted-function-deleted -Wno-dangling-gsl
+  -Wno-tautological-overlap-compare)
 list(APPEND MACOSX_COMPILER_FLAGS_RELEASE
   -D_FORTIFY_SOURCE=2)
 
@@ -57,6 +60,7 @@ set(CMAKE_CXX_FLAGS_RELEASE   "${MACOSX_COMPILER_FLAGS_RELEASE} ${CMAKE_CXX_FLAG
 set(CMAKE_SHARED_LINKER_FLAGS "${MACOSX_LINKER_FLAGS} ${CMAKE_SHARED_LINKER_FLAGS}")
 set(CMAKE_MODULE_LINKER_FLAGS "${MACOSX_LINKER_FLAGS} ${CMAKE_MODULE_LINKER_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS    "${MACOSX_LINKER_FLAGS} ${MACOSX_LINKER_FLAGS_EXE} ${CMAKE_EXE_LINKER_FLAGS}")
+set(MACOSX 1)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
