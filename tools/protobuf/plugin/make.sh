@@ -30,6 +30,7 @@ OUTPUT="${SCRIPT_PATH_ABSOLUTE}/protocCppPlugin"
 
 
 /usr/bin/g++                          \
+    -no-pie			      \
     --std=c++14                       \
     -I.  -I${INCLUDES}                \
     ${SRCS}                           \

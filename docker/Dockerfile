@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     cmake \
     autoconf \
+    ninja-build \
     libtool \
     git-lfs \
     rsync \
@@ -56,7 +57,7 @@ RUN apt-get update && apt-get install -y clang \
 #RUN apt-get install git-lfs
 
 RUN chmod 0755 /usr/local/bin
-RUN wget https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-linux-aarch64.zip
-RUN unzip ninja-linux-aarch64.zip -d /usr/local/bin/
-RUN update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
+#RUN wget https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-linux-aarch64.zip
+#RUN unzip ninja-linux-aarch64.zip -d /usr/local/bin/
+#RUN update-alternatives --install /usr/bin/ninja ninja /usr/local/bin/ninja 1 --force
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
