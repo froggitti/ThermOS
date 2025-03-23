@@ -148,6 +148,7 @@ void BehaviorPossiblePerformance::OnBehaviorActivated()
   // Make sure we know a performance is happening
   _pVars.isPerformingAnimation = true;
 
+  // Max possible time for a performance
   float estimatedAnimDuration_s = 26.0f;
   _pVars.animationEndTime_s = currTime_s + estimatedAnimDuration_s;
   
