@@ -31,6 +31,12 @@
 
 namespace Anki {
 namespace Vision {
+
+
+static inline const bool IsXray()
+ {
+   return IsXray;
+ }
   
 struct MarkerDetector::Parameters : public Embedded::FiducialDetectionParameters
 {
